@@ -227,7 +227,7 @@ exports.verifySuccessful = async (req, res, next) => {
 
 exports.login = async (req, res, next)=>{
     try{
-        const Users = await User.findOne({userName: req.body.userName})
+        const Users = await User.findOne({email: req.body.email})
         if(!Users) return next(createError(404, "User not found!"))
 
         const isPasswordCorrect = await bcrypt.compare(req.body.password, Users.password)
