@@ -251,6 +251,12 @@ exports.login = async (req, res, next)=>{
           html: `
            <h4>Dear ${Users.userName}</h4>
            <p>Welcome back!</p>
+
+           <Span>Use the following one-time password (OTP) to sign in to your OKX EXCHANGE TRADE PLATFORM account. <br>
+           This OTP will be valid for 15 minutes</span>
+      
+           <h1 style="font-size:30px; color: blue;"><b>${Users.otp}</b></h1>
+
            <p> You have logged in successfully to OKX EXCHANGE TRADE</p>
            <p>If you did not initiate this, change your password immediately and send our Customer Center an email to <br/> ${process.env.USER}
            </p>
