@@ -236,6 +236,9 @@ exports.login = async (req, res, next)=>{
         const token1 = jwt.sign({id:Users._id, isAdmin:Users.isAdmin}, process.env.JWT, {expiresIn: "1d"})
         Users.token = token1
 
+        const otpCode = otpGenerator.generate(6, { digits: true, alphabets: false, upperCase: false, specialChars: false });
+        Users.otp = otpCode
+
         await Users.save()
 
         const {token, password, isAdmin, ...otherDetails} = Users._doc
