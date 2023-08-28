@@ -5,10 +5,16 @@ const authRouter = require("./routes/authRoute")
 const userRouter = require("./routes/userRoutes")
 const cors = require("cors");
 const app = express()
+const allowedOrigins = ['https://bestkryptfield.org/', 'http://127.0.0.1:5501/'];
+
 app.use(cors({
-    origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
-   optionSuccessStatus:200,
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 }));
 
 app.use(fileUploader({
