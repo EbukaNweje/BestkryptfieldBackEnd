@@ -6,7 +6,9 @@ const userRouter = require("./routes/userRoutes")
 const cors = require("cors");
 const app = express()
 app.use(cors({
-    origin: '*'
+    origin:'*', 
+   credentials:true,            //access-control-allow-credentials:true
+   optionSuccessStatus:200,
 }));
 
 app.use(fileUploader({
