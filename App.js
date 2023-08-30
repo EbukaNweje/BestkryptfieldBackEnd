@@ -5,13 +5,13 @@ const authRouter = require("./routes/authRoute")
 const userRouter = require("./routes/userRoutes")
 const cors = require("cors");
 const app = express()
-const request = require('request');
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
+// const request = require('request');
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     next();
+//   });
 
-  const allowedOrigins = ['https://bestkryptfield.org'];
+const allowedOrigins = ['https://bestkryptfield.org'];
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -22,6 +22,7 @@ app.use(cors({
         }
     }
 }));
+
 // app.use(cors());
 app.use(express.json());
 
