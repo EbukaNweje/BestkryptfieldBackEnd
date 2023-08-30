@@ -10,7 +10,19 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     next();
   });
-app.use(cors());
+
+  const allowedOrigins = ['https://bestkryptfield.org'];
+
+app.use(cors({
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+}));
+// app.use(cors());
 app.use(express.json());
 
 app.use(fileUploader({
