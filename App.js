@@ -16,8 +16,8 @@ app.use(cookkieParser())
 
 
 
-app.use("/api", cors(), authRouter)
-app.use("/api", cors(), userRouter)
+app.use("/api", cors({origin:"*"}), authRouter)
+app.use("/api", cors({origin:"*"}), userRouter)
 
 app.use((err, req, res, next)=>{
    const errorStatus = err.status || 500
