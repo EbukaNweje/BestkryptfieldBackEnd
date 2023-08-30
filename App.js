@@ -5,25 +5,8 @@ const authRouter = require("./routes/authRoute")
 const userRouter = require("./routes/userRoutes")
 const cors = require("cors");
 const app = express()
-// const request = require('request');
-// app.use((req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', '*');
-//     next();
-//   });
 
-const allowedOrigins = ['https://bestkryptfield.org'];
-
-app.use(cors({
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    }
-}));
-
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.use(fileUploader({
@@ -33,8 +16,8 @@ app.use(cookkieParser())
 
 
 
-app.use("/api", authRouter)
-app.use("/api", userRouter)
+app.use("/api", cors(), authRouter)
+app.use("/api", cors(), userRouter)
 
 app.use((err, req, res, next)=>{
    const errorStatus = err.status || 500
